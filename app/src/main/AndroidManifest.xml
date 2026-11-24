@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.software.leanback" android:required="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Opcional: ordenar apps por uso. Se concede con: adb shell appops set co.davidvega.launcher GET_USAGE_STATS allow -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+    <!-- Autocuración tras reinicios: se concede con adb shell pm grant co.davidvega.launcher android.permission.WRITE_SECURE_SETTINGS (instalar.ps1). -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="false"
+        android:networkSecurityConfig="@xml/red_segura"
+        android:banner="@drawable/banner"
+        android:icon="@drawable/icono"
+        android:label="@string/app_name"
+        android:theme="@style/Tema">
+
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/banner"
+            android:icon="@drawable/icono"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <!-- Permite elegirlo como pantalla de inicio en Android TV / Google TV que ofrezcan cambiar de launcher. En Fire OS el inicio de Amazon sigue mandando; ver INSTALL.md. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Opcional y desactivado por defecto: ayuda a abrir este launcher cuando aparece el de Amazon. Ver README. -->
+        <service
+            android:name=".sistema.HomeAccessibilityService"
+            android:exported="false"
+            android:label="@string/servicio_home"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/servicio_accesibilidad" />
+        </service>
+
+        <!-- Al encender la tele o actualizar la app: reactiva servicios (Autocuracion) y abre el launcher. -->
+        <receiver android:name=".sistema.Arranque" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Mantenimiento nocturno (4:30): alarma diaria que recorta cachés y reinicia por adb local. Ver Mantenimiento.kt. -->
+        <receiver android:name=".sistema.MantenimientoReceiver" android:exported="false" />
+
+        <!-- Lee las sesiones de reproducción (MediaSession) de las apps. Se activa por adb; ver LEEME. -->
+        <service
+            android:name=".sistema.EscuchaMedios"
+            android:exported="true"
+            android:label="@string/escucha_medios"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".sistema.Salvapantallas"
+            android:exported="true"
+            android:label="Carátulas"
+            android:permission="android.permission.BIND_DREAM_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

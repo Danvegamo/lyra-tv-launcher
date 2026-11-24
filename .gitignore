@@ -1,0 +1,35 @@
+# Build
+.gradle/
+.kotlin/
+build/
+app/build/
+buildSrc/build/
+*.apk
+*.aab
+local.properties
+
+# Secrets and signing: never commit
+config.local.properties
+config.local.*
+.env
+*.jks
+*.keystore
+*.p12
+adbkey
+adbkey.pub
+
+# Personal data generated on your machine or TV
+datos/gustos.json
+datos/seguir.json
+datos/vistos_externos.json
+datos/uso_apps.json
+datos/no_recomendar.json
+capturas/
+historial/
+
+# IDE and caches
+.idea/
+*.iml
+.vscode/
+__pycache__/
+.DS_Store

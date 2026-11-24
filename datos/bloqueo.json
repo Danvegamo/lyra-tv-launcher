@@ -1,0 +1,121 @@
+{
+ "_nota": "Lista editable del filtro de contenido explícito. La carga el launcher desde assets; se puede sustituir copiando un bloqueo.json a la carpeta externa de la app (adb push). 'keywords' son ids reales de TMDB (buscados con /search/keyword el 26 oct 2026). 'palabras_clave_regex' captura palabras clave nuevas por nombre. Las certificaciones duras bloquean siempre; las 'con_tema_sexual' solo si alguna palabra clave habla de sexo, desnudez o erotismo. R normal, TV-MA y 16+ se permiten.",
+ "keywords": {
+  "445": "pornography",
+  "5593": "pornographic video",
+  "6443": "child pornography",
+  "10053": "sexploitation",
+  "11275": "erotic dance",
+  "18314": "internet porn",
+  "154986": "gonzo pornography",
+  "155139": "porn parody",
+  "155477": "softcore",
+  "155691": "erotic vignettes",
+  "159551": "pink film",
+  "187522": "porn magazine",
+  "190366": "feature porn",
+  "190370": "erotic movie",
+  "195222": "nunsploitation",
+  "198385": "hentai",
+  "207767": "erotic thriller",
+  "207807": "erotic fantasy",
+  "226010": "erotic stories",
+  "226161": "erotic massage",
+  "238059": "gay erotica",
+  "238355": "gay pornography",
+  "240530": "erotic horror",
+  "246422": "porn tape",
+  "256466": "erotic",
+  "256603": "erotic masseuse",
+  "272027": "pornographic animation",
+  "298666": "erotic romance",
+  "302868": "erotic comedy",
+  "322288": "alternative porn",
+  "325692": "hotel erotica cabo",
+  "325693": "erotica",
+  "327476": "australian sex comedy",
+  "331947": "bisexual pornography",
+  "334276": "porn website",
+  "335703": "trans pornography",
+  "335853": "early pornographic film",
+  "337325": "erotic anthology",
+  "343572": "erotic film",
+  "343713": "erotic wrestling",
+  "344391": "erotico",
+  "345881": "porn classic",
+  "345933": "porn films",
+  "347722": "lesbian pornography",
+  "350793": "greek erotica",
+  "352503": "erotic theater",
+  "355313": "lesbian erotica",
+  "364719": "erotic drama",
+  "364927": "alt pornography",
+  "365656": "erotic moive",
+  "372609": "historic erotica",
+  "379979": "mature and adult film",
+  "380427": "non-nude erotica",
+  "380851": "erotic dreams",
+  "381597": "pinku eiga",
+  "382287": "teen sex comedy",
+  "382870": "gay softcore",
+  "383671": "pornographic parody",
+  "383675": "argentine sex comedy",
+  "384581": "hentai adaptation",
+  "385955": "porn"
+ },
+ "palabras_clave_regex": "erotic|erotica|softcore|soft core|sexploitation|pornograph|^porn$|hentai|pink film|pinku|adult film|explicit sex|unsimulated|nunsploitation",
+ "tema_sexual_regex": "sex|nud|erotic|porn|lingerie|strip|fetish|brothel",
+ "certificaciones_duras": [
+  "NC-17",
+  "X",
+  "XXX",
+  "R18",
+  "R18+",
+  "R-18",
+  "18+ explicit"
+ ],
+ "certificaciones_con_tema_sexual": {
+  "MX": [
+   "C",
+   "D"
+  ],
+  "ES": [
+   "18"
+  ],
+  "BR": [
+   "18"
+  ],
+  "US": [
+   "NC-17"
+  ],
+  "DE": [
+   "18"
+  ],
+  "FR": [
+   "18",
+   "-18"
+  ],
+  "CO": [
+   "18",
+   "+18"
+  ],
+  "AR": [
+   "18"
+  ],
+  "PT": [
+   "M/18"
+  ],
+  "IT": [
+   "VM18"
+  ]
+ },
+ "texto_regex": "\\b(porn\\w*|xxx|hentai|softcore|sexploitation|pink film|er[oó]tic\\w*|erotism\\w*|sexo expl[ií]cito|explicit sex|adults? only|adult film|milf|nc-17|x-rated|nympho\\w*|sexo sin censura|uncensored sex)\\b",
+ "heuristica_sin_info": {
+  "votos_max": 20,
+  "sinopsis_max": 60,
+  "generos": [
+   10749,
+   18
+  ]
+ }
+}

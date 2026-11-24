@@ -1,0 +1,412 @@
+{
+  "version": 1,
+  "_nota": "Plantilla de gustos de ejemplo. Copiala como datos/gustos.json y ajustala a tu casa: region, idioma, proveedores, declarados, anclas y filas se editan a mano; historial lo rellena el propio launcher. Sin datos/gustos.json, el launcher usa esta plantilla. / Example taste profile: copy to datos/gustos.json and edit.",
+  "region": "CO",
+  "idioma": "es-MX",
+  "proveedores": {
+    "_nota": "Ids de TMDB (watch providers). Orden = prioridad al abrir un título disponible en varios servicios.",
+    "crunchyroll": {
+      "nombre": "Crunchyroll",
+      "ids": [
+        283
+      ],
+      "paquete": "com.crunchyroll.crunchyroid"
+    },
+    "prime": {
+      "nombre": "Prime Video",
+      "ids": [
+        119,
+        9
+      ],
+      "paquete": "com.amazon.firebat"
+    },
+    "hbomax": {
+      "nombre": "HBO Max",
+      "ids": [
+        1899,
+        384
+      ],
+      "paquete": "com.hbo.hbonow"
+    },
+    "netflix": {
+      "nombre": "Netflix",
+      "ids": [
+        8
+      ],
+      "paquete": "com.netflix.ninja"
+    }
+  },
+  "declarados": {
+    "generos": [
+      "documental",
+      "animación",
+      "anime",
+      "cine de arte",
+      "terror",
+      "thriller psicológico",
+      "drama de impacto social"
+    ],
+    "temas": [
+      "Gold Rush y documentales del estilo Discovery",
+      "contenido bien valorado por la crítica",
+      "historias necesarias"
+    ],
+    "nota_minima": 6.8
+  },
+  "anclas": [
+    {
+      "titulo": "Los diarios de la boticaria",
+      "medio": "tv",
+      "servicio": "crunchyroll",
+      "peso": 3,
+      "fuente": "ejemplo",
+      "tmdb_id": 220542
+    },
+    {
+      "titulo": "Vinland Saga",
+      "medio": "tv",
+      "servicio": "crunchyroll",
+      "peso": 3,
+      "fuente": "ejemplo",
+      "tmdb_id": 88803
+    },
+    {
+      "titulo": "Black Clover",
+      "medio": "tv",
+      "servicio": "crunchyroll",
+      "peso": 2,
+      "fuente": "ejemplo",
+      "tmdb_id": 73223
+    },
+    {
+      "titulo": "Dragon Ball Super",
+      "medio": "tv",
+      "servicio": "crunchyroll",
+      "peso": 2,
+      "fuente": "ejemplo",
+      "tmdb_id": 62715
+    },
+    {
+      "titulo": "One Cut of the Dead",
+      "medio": "movie",
+      "servicio": "prime",
+      "peso": 3,
+      "fuente": "ejemplo",
+      "tmdb_id": 513434
+    },
+    {
+      "titulo": "Gold Rush",
+      "medio": "tv",
+      "servicio": "",
+      "peso": 4,
+      "fuente": "ejemplo",
+      "tmdb_id": 34634
+    },
+    {
+      "titulo": "Parasite",
+      "medio": "movie",
+      "tmdb_id": 496243,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Roma",
+      "medio": "movie",
+      "tmdb_id": 426426,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Drive My Car",
+      "medio": "movie",
+      "tmdb_id": 758866,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Aftersun",
+      "medio": "movie",
+      "tmdb_id": 965150,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Burning",
+      "medio": "movie",
+      "tmdb_id": 491584,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Portrait of a Lady on Fire",
+      "medio": "movie",
+      "tmdb_id": 531428,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Past Lives",
+      "medio": "movie",
+      "tmdb_id": 666277,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Black Swan",
+      "medio": "movie",
+      "tmdb_id": 44214,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Hereditary",
+      "medio": "movie",
+      "tmdb_id": 493922,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Mindhunter",
+      "medio": "tv",
+      "tmdb_id": 67744,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Perfect Blue",
+      "medio": "movie",
+      "tmdb_id": 10494,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Spotlight",
+      "medio": "movie",
+      "tmdb_id": 314365,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "When They See Us",
+      "medio": "tv",
+      "tmdb_id": 81355,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "13th",
+      "medio": "movie",
+      "tmdb_id": 407806,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Chernobyl",
+      "medio": "tv",
+      "tmdb_id": 87108,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "The Act of Killing",
+      "medio": "movie",
+      "tmdb_id": 123678,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    },
+    {
+      "titulo": "Hotel Rwanda",
+      "medio": "movie",
+      "tmdb_id": 205,
+      "servicio": "",
+      "peso": 2,
+      "fuente": "ejemplo"
+    }
+  ],
+  "historial": [],
+  "filas": [
+    {
+      "id": "porque_viste",
+      "tipo": "por_ancla",
+      "titulo": "Porque viste {ancla}",
+      "max_filas": 3,
+      "max": 20
+    },
+    {
+      "id": "terror_psicologico",
+      "titulo": "Terror y psicológico",
+      "tipo": "mixto",
+      "medio": "ambos",
+      "anclas": [
+        "One Cut of the Dead",
+        "Black Swan",
+        "Hereditary",
+        "Mindhunter",
+        "Perfect Blue"
+      ],
+      "discover": {
+        "generos": [
+          27,
+          53
+        ],
+        "generos_modo": "o",
+        "palabras_clave": [
+          "psychological thriller",
+          "psychological horror"
+        ],
+        "orden": "vote_average.desc",
+        "min_votos": 400,
+        "min_nota": 7.0,
+        "paginas": 2
+      },
+      "max": 20,
+      "filtro_generos": true
+    },
+    {
+      "id": "cine_de_arte",
+      "titulo": "Cine de arte",
+      "tipo": "mixto",
+      "medio": "movie",
+      "anclas": [
+        "Parasite",
+        "Roma",
+        "Drive My Car",
+        "Aftersun",
+        "Burning",
+        "Portrait of a Lady on Fire",
+        "Past Lives"
+      ],
+      "discover": {
+        "generos": [
+          18
+        ],
+        "palabras_clave": [
+          "arthouse"
+        ],
+        "orden": "vote_average.desc",
+        "min_votos": 300,
+        "min_nota": 7.3,
+        "paginas": 2
+      },
+      "max": 20
+    },
+    {
+      "id": "anime",
+      "titulo": "Anime",
+      "tipo": "mixto",
+      "medio": "tv",
+      "anclas": [
+        "Los diarios de la boticaria",
+        "Vinland Saga",
+        "Black Clover",
+        "Dragon Ball Super"
+      ],
+      "discover": {
+        "generos": [
+          16
+        ],
+        "idioma_original": "ja",
+        "orden": "vote_average.desc",
+        "min_votos": 200,
+        "min_nota": 7.3,
+        "palabras_clave": [
+          "anime"
+        ],
+        "paginas": 2
+      },
+      "max": 20,
+      "filtro_generos": true
+    },
+    {
+      "id": "gold_rush",
+      "titulo": "Documentales tipo Gold Rush",
+      "tipo": "mixto",
+      "medio": "tv",
+      "anclas": [
+        "Gold Rush"
+      ],
+      "discover": {
+        "generos": [
+          99
+        ],
+        "redes": [
+          64,
+          65
+        ],
+        "orden": "popularity.desc",
+        "min_votos": 20,
+        "min_nota": 6.5
+      },
+      "filtro": "preferir",
+      "max": 20,
+      "filtro_generos": true
+    },
+    {
+      "id": "historias_necesarias",
+      "titulo": "Historias necesarias",
+      "tipo": "mixto",
+      "medio": "ambos",
+      "anclas": [
+        "Spotlight",
+        "When They See Us",
+        "13th",
+        "Chernobyl",
+        "The Act of Killing",
+        "Hotel Rwanda"
+      ],
+      "discover": {
+        "generos": [
+          99,
+          18
+        ],
+        "generos_modo": "o",
+        "palabras_clave": [
+          "social issues",
+          "based on true story"
+        ],
+        "orden": "vote_average.desc",
+        "min_votos": 400,
+        "min_nota": 7.5
+      },
+      "max": 20,
+      "filtro_generos": true
+    },
+    {
+      "id": "alta_critica",
+      "titulo": "Lo mejor valorado en tus servicios",
+      "tipo": "discover",
+      "medio": "ambos",
+      "discover": {
+        "generos": [
+          18,
+          99,
+          16,
+          27,
+          53
+        ],
+        "generos_modo": "o",
+        "orden": "vote_average.desc",
+        "min_votos": 1500,
+        "min_nota": 8.0
+      },
+      "max": 20
+    }
+  ],
+  "_nota_anclas": "Las anclas con tmdb_id fijo evitan que la búsqueda por nombre elija mal. Las 'semilla' son títulos propuestos para cada fila (servicio vacío: no cuentan como 'visto'); el usuario puede cambiarlas."
+}

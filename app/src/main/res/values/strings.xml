@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lyra</string>
+    <string name="servicio_home">Lyra: botón Home</string>
+    <string name="descripcion_accesibilidad">Opcional. Abre Lyra cuando el sistema muestra la pantalla de inicio de Amazon y, solo tras pulsar «Buscar en IPTV/Crunchyroll» en el launcher, escribe el título en el buscador de esa app durante unos segundos.</string>
+    <string name="escucha_medios">Lyra: lo que se reproduce</string>
+</resources>

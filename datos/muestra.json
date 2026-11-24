@@ -1,0 +1,63 @@
+{
+  "_nota": "DATOS DE EJEMPLO: se muestran solo mientras no hay clave de TMDB. No son recomendaciones reales.",
+  "filas": [
+    {
+      "id": "m_porque", "titulo": "Porque viste Vinland Saga",
+      "items": [
+        { "titulo": "Berserk", "medio": "tv", "anio": "1997", "nota": 8.5, "servicios": ["prime"], "gradiente": 0, "sinopsis": "Ejemplo. Un mercenario errante carga una espada enorme y un pasado que no lo suelta." },
+        { "titulo": "Mushishi", "medio": "tv", "anio": "2005", "nota": 8.5, "servicios": ["crunchyroll"], "gradiente": 1, "sinopsis": "Ejemplo. Un viajero estudia criaturas antiguas que conviven con las personas." },
+        { "titulo": "Monster", "medio": "tv", "anio": "2004", "nota": 8.7, "servicios": ["crunchyroll"], "gradiente": 2, "sinopsis": "Ejemplo. Un médico persigue al hombre al que salvó la vida." },
+        { "titulo": "Attack on Titan", "medio": "tv", "anio": "2013", "nota": 8.7, "servicios": ["crunchyroll"], "gradiente": 3, "sinopsis": "Ejemplo. La humanidad vive tras muros mientras gigantes la acechan." },
+        { "titulo": "Kingdom", "medio": "tv", "anio": "2012", "nota": 8.1, "servicios": ["crunchyroll"], "gradiente": 4, "sinopsis": "Ejemplo. Dos huérfanos sueñan con ser generales en una China en guerra." },
+        { "titulo": "Golden Kamuy", "medio": "tv", "anio": "2018", "nota": 8.2, "servicios": ["crunchyroll"], "gradiente": 5, "sinopsis": "Ejemplo. Una búsqueda de oro enterrado en el norte nevado." }
+      ]
+    },
+    {
+      "id": "m_anime", "titulo": "Anime",
+      "items": [
+        { "titulo": "Frieren", "medio": "tv", "anio": "2023", "nota": 8.9, "servicios": ["crunchyroll"], "gradiente": 1, "sinopsis": "Ejemplo. Una maga elfa revisa su viaje después de la victoria." },
+        { "titulo": "Fullmetal Alchemist", "medio": "tv", "anio": "2009", "nota": 8.7, "servicios": ["crunchyroll"], "gradiente": 0, "sinopsis": "Ejemplo. Dos hermanos buscan recuperar lo que perdieron con la alquimia." },
+        { "titulo": "Cowboy Bebop", "medio": "tv", "anio": "1998", "nota": 8.6, "servicios": ["netflix"], "gradiente": 2, "sinopsis": "Ejemplo. Cazarrecompensas a la deriva en el espacio." },
+        { "titulo": "Made in Abyss", "medio": "tv", "anio": "2017", "nota": 8.5, "servicios": ["prime"], "gradiente": 3, "sinopsis": "Ejemplo. Una niña desciende a un abismo del que casi nadie vuelve." },
+        { "titulo": "Hunter x Hunter", "medio": "tv", "anio": "2011", "nota": 8.9, "servicios": ["crunchyroll"], "gradiente": 4, "sinopsis": "Ejemplo. Un chico busca a su padre cazador." }
+      ]
+    },
+    {
+      "id": "m_terror", "titulo": "Terror y psicológico",
+      "items": [
+        { "titulo": "Hereditary", "medio": "movie", "anio": "2018", "nota": 7.3, "servicios": ["prime"], "gradiente": 5, "sinopsis": "Ejemplo. Una familia descubre secretos tras la muerte de la abuela." },
+        { "titulo": "Black Swan", "medio": "movie", "anio": "2010", "nota": 7.9, "servicios": ["hbomax"], "gradiente": 2, "sinopsis": "Ejemplo. Una bailarina se rompe bajo la presión de la perfección." },
+        { "titulo": "Mindhunter", "medio": "tv", "anio": "2017", "nota": 8.6, "servicios": ["netflix"], "gradiente": 0, "sinopsis": "Ejemplo. Agentes entrevistan a asesinos para entender sus mentes." },
+        { "titulo": "The Haunting of Hill House", "medio": "tv", "anio": "2018", "nota": 8.6, "servicios": ["netflix"], "gradiente": 1, "sinopsis": "Ejemplo. Una casa, una familia y dos tiempos." },
+        { "titulo": "Midsommar", "medio": "movie", "anio": "2019", "nota": 7.1, "servicios": ["prime"], "gradiente": 3, "sinopsis": "Ejemplo. Un festival sueco que no es lo que parece." }
+      ]
+    },
+    {
+      "id": "m_arte", "titulo": "Cine de arte",
+      "items": [
+        { "titulo": "Parasite", "medio": "movie", "anio": "2019", "nota": 8.5, "servicios": ["hbomax"], "gradiente": 4, "sinopsis": "Ejemplo. Dos familias, una casa, ninguna inocente." },
+        { "titulo": "Drive My Car", "medio": "movie", "anio": "2021", "nota": 7.6, "servicios": ["prime"], "gradiente": 0, "sinopsis": "Ejemplo. Un director de teatro y su chofer." },
+        { "titulo": "Roma", "medio": "movie", "anio": "2018", "nota": 7.7, "servicios": ["netflix"], "gradiente": 1, "sinopsis": "Ejemplo. Un año en la vida de una empleada doméstica en Ciudad de México." },
+        { "titulo": "Aftersun", "medio": "movie", "anio": "2022", "nota": 7.7, "servicios": ["prime"], "gradiente": 2, "sinopsis": "Ejemplo. Una hija recuerda unas vacaciones con su padre." }
+      ]
+    },
+    {
+      "id": "m_gold", "titulo": "Documentales tipo Gold Rush",
+      "items": [
+        { "titulo": "Gold Rush", "medio": "tv", "anio": "2010", "nota": 7.0, "servicios": ["prime"], "gradiente": 5, "sinopsis": "Ejemplo. Mineros de oro apuestan todo a una temporada." },
+        { "titulo": "Deadliest Catch", "medio": "tv", "anio": "2005", "nota": 7.6, "servicios": ["hbomax"], "gradiente": 3, "sinopsis": "Ejemplo. Pesca de cangrejo en el mar de Bering." },
+        { "titulo": "Life Below Zero", "medio": "tv", "anio": "2013", "nota": 7.3, "servicios": ["prime"], "gradiente": 1, "sinopsis": "Ejemplo. Vivir en Alaska lejos de todo." },
+        { "titulo": "Our Planet", "medio": "tv", "anio": "2019", "nota": 8.6, "servicios": ["netflix"], "gradiente": 4, "sinopsis": "Ejemplo. La naturaleza y lo que le hacemos." }
+      ]
+    },
+    {
+      "id": "m_historias", "titulo": "Historias necesarias",
+      "items": [
+        { "titulo": "Spotlight", "medio": "movie", "anio": "2015", "nota": 7.8, "servicios": ["hbomax"], "gradiente": 0, "sinopsis": "Ejemplo. Periodistas destapan una red de encubrimiento." },
+        { "titulo": "13th", "medio": "movie", "anio": "2016", "nota": 8.0, "servicios": ["netflix"], "gradiente": 2, "sinopsis": "Ejemplo. Raza, justicia y encarcelamiento masivo." },
+        { "titulo": "Chernobyl", "medio": "tv", "anio": "2019", "nota": 8.7, "servicios": ["hbomax"], "gradiente": 5, "sinopsis": "Ejemplo. El costo de ocultar la verdad." },
+        { "titulo": "When They See Us", "medio": "tv", "anio": "2019", "nota": 8.3, "servicios": ["netflix"], "gradiente": 3, "sinopsis": "Ejemplo. Cinco adolescentes acusados injustamente." }
+      ]
+    }
+  ]
+}

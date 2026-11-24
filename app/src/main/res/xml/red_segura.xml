@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Todo va por HTTPS. Si tu servidor de eventos (EVENTOS_URL) usa HTTP sin TLS en tu red local,
+     añade aquí su IP o nombre, por ejemplo <domain includeSubdomains="false">tu-servidor.local</domain>.
+     All traffic is HTTPS. If your optional events server (EVENTOS_URL) is plain HTTP on your LAN, add its host here. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+</network-security-config>
