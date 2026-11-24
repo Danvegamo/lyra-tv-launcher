@@ -58,7 +58,7 @@ internal class GlitchAnim {
     }
 }
 
-private val RojoVigia = Color(0xFFFF3D4D)
+private val RojoVigia get() = Tema.Acento
 private val SoloVerdeAzul = ColorFilter.colorMatrix(ColorMatrix(floatArrayOf(0f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 0f, 1f, 0f)))
 private val SoloRojo = ColorFilter.colorMatrix(ColorMatrix(floatArrayOf(1f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 1f, 0f)))
 

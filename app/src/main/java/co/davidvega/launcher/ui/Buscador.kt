@@ -70,8 +70,8 @@ import kotlinx.coroutines.delay
 import java.util.Locale
 
 private val Filas = listOf("ABCDEF", "GHIJKL", "MNOPQR", "STUVWX", "YZ0123", "456789")
-private val TeclaFondo = Tema.Superficie2
-private val TeclaFoco = Tema.Texto
+private val TeclaFondo get() = Tema.Superficie2
+private val TeclaFoco get() = Tema.Foco
 
 /**
  * Buscador: teclado en pantalla propio (A-Z, 0-9, espacio, borrar) cómodo con el D-pad, o el teclado del sistema, o voz si el
@@ -300,8 +300,8 @@ private fun FiltroPieza(texto: String, activo: Boolean, alPulsar: () -> Unit) {
     var foco by remember { mutableStateOf(false) }
     val forma = RoundedCornerShape(18.dp)
     Box(
-        Modifier.clip(forma).background(if (foco) TeclaFoco else if (activo) Color.White.copy(alpha = 0.22f) else TeclaFondo)
-            .border(if (foco) 2.dp else 1.dp, if (foco) Color.White else Color.White.copy(alpha = 0.15f), forma)
+        Modifier.clip(forma).background(if (foco) TeclaFoco else if (activo) Tema.Texto.copy(alpha = 0.22f) else TeclaFondo)
+            .border(if (foco) 2.dp else 1.dp, if (foco) Tema.Foco else Tema.Texto.copy(alpha = 0.15f), forma)
             .onFocusChanged { foco = it.isFocused }.clickable(onClick = alPulsar).padding(horizontal = 14.dp, vertical = 7.dp),
     ) { BasicText(texto, style = txt(13, FontWeight.SemiBold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null), maxLines = 1) }
 }
@@ -346,7 +346,7 @@ private fun VerMas(texto: String, alPulsar: () -> Unit) {
     var foco by remember { mutableStateOf(false) }
     Box(
         Modifier.size(112.dp, 168.dp).clip(RoundedCornerShape(10.dp)).background(if (foco) TeclaFoco else TeclaFondo)
-            .border(if (foco) 2.dp else 1.dp, if (foco) Color.White else Color.White.copy(alpha = 0.15f), RoundedCornerShape(10.dp))
+            .border(if (foco) 2.dp else 1.dp, if (foco) Tema.Foco else Tema.Texto.copy(alpha = 0.15f), RoundedCornerShape(10.dp))
             .onFocusChanged { foco = it.isFocused }.clickable(onClick = alPulsar),
         contentAlignment = Alignment.Center,
     ) { BasicText(texto, style = txt(15, FontWeight.SemiBold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null)) }

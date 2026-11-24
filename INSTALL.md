@@ -17,6 +17,8 @@ Lyra is a custom home screen for TV devices. It is not in any app store: you ins
 
 ## 2. Choose how to install
 
+![Three install routes: A with the Downloader app, B with adb from a PC, C building from source](docs/images/install-routes-en.png)
+
 ### Route A: no PC, with the Downloader app (easiest)
 
 1. On the TV, install **Downloader** (by AFTVnews) from the Amazon Appstore (Fire TV) or Google Play (Android TV).
@@ -64,6 +66,12 @@ The APK is `app/build/outputs/apk/debug/app-debug.apk`. `./gradlew assembleRelea
 
 Open **Lyra** from your app list. You should see the Lyra intro and then the home screen with rows. Move with the D-pad, press OK to open a title, and press the menu key (the three-lines button) for the per-title menu: trailer, mark as seen, don't recommend, My List. Inside Lyra, *Ajustes > Estado del sistema* (Settings > System status) shows what works and how to fix what does not. The in-app texts are in Spanish.
 
+| First the intro… | …then the home screen |
+| --- | --- |
+| ![Lyra intro with the dot-matrix logo](docs/images/intro.webp) | ![Lyra home screen with sample rows](docs/images/home.webp) |
+
+Without a TMDB key you get the sample rows shown above (cards without posters and a "DATOS DE EJEMPLO" badge under the clock). That is expected: add a key in step 5.
+
 ## 4. Make Lyra your home screen
 
 This depends on your device and is the least tested part.
@@ -100,6 +108,8 @@ Optional extras (each needs adb once):
 
 Lyra needs data from the internet. All keys are **yours**; none ship with the app. The template is [`config.example.properties`](config.example.properties), with a comment on every line.
 
+![Where config.local.properties goes: the repo root before building, or the app folder on the TV with adb push](docs/images/config-file-en.png)
+
 | Key | Needed? | How to get it |
 | --- | --- | --- |
 | `TMDB_API_KEY` or `TMDB_READ_TOKEN` | Recommended. Without one you only see sample rows. | Free account at <https://www.themoviedb.org>, then *Settings > API*, request a developer key. Use either the "API Key" (v3) or the "Read Access Token" (v4, starts with `eyJ`). |
@@ -118,12 +128,32 @@ and copy it to `/sdcard/Android/data/co.davidvega.launcher/files/` on the TV. Wi
 
 Your taste profile (region, language, your streaming apps, titles you love) lives in `datos/gustos.json`. The README, section *Your taste profile*, explains how to change it, including without rebuilding.
 
-## 6. Updating
+## 6. Colors and themes
+
+Lyra has six color themes: **Lyra** (default, black and white with a red focus ring), **Medianoche** (navy and cyan), **OLED negro** (pure black), **Alto contraste** (high contrast, yellow focus), **Cálido** (warm brown and amber) and **Papel** (a light theme).
+
+To change it with the remote: open the **Ajustes** tile on the home screen, scroll down to **TEMA DE COLOR**, move to a theme and press OK. The screen changes at once and the choice is remembered.
+
+![Ajustes panel, color theme section, with the Medianoche theme active](docs/images/settings-themes.webp)
+
+![The home screen in each of the six themes](docs/images/themes.webp)
+
+Your own colors (optional): add lines like these to the same `config.local.properties` as in step 5, then restart Lyra.
+
+```
+THEME=oled
+THEME_ACCENT=#4CC9F0
+THEME_BACKGROUND=#101820
+```
+
+`THEME` is only the starting theme; whatever you pick in *Ajustes* wins. Colors are `#RRGGBB`. To keep text readable and the focus ring visible from the sofa, Lyra refuses colors that fail the WCAG AA contrast rules (for example a dark accent on a dark background) and shows why under the theme list. The high-contrast theme ignores custom colors.
+
+## 7. Updating
 
 - **Route A:** run Downloader again with the same address. Installing over the old version keeps your settings. If Android refuses because the signature differs, uninstall first.
 - **Route B/C:** `adb install -r <new-apk>`. On Fire TV, `adb install -r` turns the accessibility service off: enable it again (step 4) or just use `instalar.ps1`.
 
-## 7. Uninstalling and going back to stock
+## 8. Uninstalling and going back to stock
 
 ```sh
 adb shell settings put secure enabled_accessibility_services ""
@@ -132,7 +162,7 @@ adb uninstall co.davidvega.launcher
 
 The first line turns off all accessibility services (it clears the whole list, so turn back on any others you use). Without a PC: *Settings > Applications > Manage Installed Applications > Lyra > Uninstall*. The Amazon home comes back immediately; Lyra changes nothing else on the TV. If you set Lyra as the default home on Android TV, choose another home app first, or simply uninstall it.
 
-## 8. Troubleshooting
+## 9. Troubleshooting
 
 - **The highlight gets lost or a screen cannot be navigated.** Press Back and enter the screen again. If it keeps happening, open an issue with the screen and the device. Lyra is operated with the D-pad only.
 - **Black screen or the intro seems stuck.** Wait about 10 seconds, then press Back and open Lyra again. In *Ajustes > Intro* choose "ninguna" (none) to skip the video. Report your device model if it persists.

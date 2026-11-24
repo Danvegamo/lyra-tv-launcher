@@ -137,12 +137,12 @@ private fun FilaMenu(icono: String, texto: String, modifier: Modifier, alPulsar:
     val forma = RoundedCornerShape(14.dp)
     Row(
         modifier.fillMaxWidth().height(46.dp).graphicsLayer { scaleX = escala; scaleY = escala; transformOrigin = TransformOrigin(0f, 0.5f) }
-            .clip(forma).background(if (foco) Color.White else Color.White.copy(alpha = 0.10f))
-            .border(if (foco) 2.dp else 1.dp, if (foco) Color.White else Color.White.copy(alpha = 0.14f), forma)
+            .clip(forma).background(if (foco) Tema.Foco else Tema.Texto.copy(alpha = 0.10f))
+            .border(if (foco) 2.dp else 1.dp, if (foco) Tema.Foco else Tema.Texto.copy(alpha = 0.14f), forma)
             .onFocusChanged { foco = it.isFocused }.clickable(onClick = alPulsar).padding(horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(28.dp).clip(RoundedCornerShape(14.dp)).background(if (foco) Color.Black.copy(alpha = 0.12f) else Color.White.copy(alpha = 0.14f)), contentAlignment = Alignment.Center) {
+        Box(Modifier.size(28.dp).clip(RoundedCornerShape(14.dp)).background(if (foco) Tema.TextoSobreBlanco.copy(alpha = 0.12f) else Tema.Texto.copy(alpha = 0.14f)), contentAlignment = Alignment.Center) {
             BasicText(icono, style = txt(15, FontWeight.Bold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null))
         }
         Spacer(Modifier.width(14.dp))

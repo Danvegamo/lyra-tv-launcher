@@ -4,6 +4,10 @@
 
 Lyra is an open-source launcher (home screen) for TV devices, written in Kotlin with Jetpack Compose. It replaces the ad-heavy stock home with a quiet, remote-friendly screen built around what you actually watch. It is built and tested on a Fire TV Stick 4K Max (Fire OS 7); it is designed for Fire TV and Android TV / Google TV devices (Android 9 or later, leanback).
 
+![Lyra home screen with sample rows, default theme](docs/images/home.webp)
+
+<sub>Screenshots come from the Android TV emulator (Android 9) with the built-in sample data, which is what you see before adding a TMDB key. With a key, cards show real posters and backdrops.</sub>
+
 > Spanish summary below / Resumen en español más abajo. Step-by-step install guide for non-developers: [INSTALL.md](INSTALL.md) (English) · [INSTALL.es.md](INSTALL.es.md) (Español).
 
 ## Quick start
@@ -12,6 +16,17 @@ Lyra is an open-source launcher (home screen) for TV devices, written in Kotlin 
 2. Open Downloader and enter: `https://github.com/Danvegamo/lyra-tv-launcher/releases/latest/download/lyra-tv-launcher.apk`, then install.
 3. Open **Lyra** from your apps. Without a TMDB key it shows sample rows; get a free key and add it as described in [INSTALL.md](INSTALL.md#5-add-your-api-keys).
 4. Making it your home screen is a separate step and depends on the device: see [INSTALL.md](INSTALL.md#4-make-lyra-your-home-screen).
+
+That download link always points to the newest release: every release ships the same APK twice, as `lyra-tv-launcher-<version>.apk` (to keep a specific version) and as `lyra-tv-launcher.apk` (the stable name behind `releases/latest/download/`).
+
+## Screenshots
+
+| | |
+| --- | --- |
+| ![Intro animation with the LYRA dot-matrix logo](docs/images/intro.webp) | ![Title detail with "Watch on" buttons](docs/images/detail.webp) |
+| Intro, played while the TV wakes up | Title detail: OK on a card, then "Watch on…" |
+| ![Settings panel with the color theme picker, Midnight theme active](docs/images/settings-themes.webp) | ![The same home screen in the six color themes](docs/images/themes.webp) |
+| Settings (*Ajustes*) with the color theme picker | The six built-in themes |
 
 ## Features
 
@@ -24,6 +39,7 @@ Lyra is an open-source launcher (home screen) for TV devices, written in Kotlin 
 - **Home button takeover**: an optional accessibility service brings you back to this launcher when Fire OS shows the Amazon home.
 - **Nightly maintenance** (optional): at 4:30, if nobody is watching, trims caches and reboots the TV over local adb to keep it fast.
 - **Explicit content filter** editable in `datos/bloqueo.json`.
+- **Color themes**: six presets (including OLED black, high contrast and a light theme) picked with the remote, plus your own accent and background color. See [Themes & colors](#themes--colors).
 - Optional: send viewing events to your own server, and mark finished anime episodes on AniList.
 
 ## Requirements
@@ -51,6 +67,8 @@ Edit `config.local.properties` (it is git-ignored and never leaves your machine)
 | `EVENTOS_TOKEN` | no | Bearer token sent to `EVENTOS_URL`. |
 | `EVENTOS_DISPOSITIVO` | no | Device name reported to the server (default `firetv`). |
 | `ANILIST_TOKEN` | no | AniList token. Not compiled in: push it to the TV (see *Optional*). |
+| `THEME` | no | Default color theme: `lyra`, `medianoche`, `oled`, `contraste`, `calido` or `papel`. See [Themes & colors](#themes--colors). |
+| `THEME_ACCENT`, `THEME_BACKGROUND` | no | Custom accent and background as `#RRGGBB`. |
 
 If `EVENTOS_URL` is plain `http://` on your LAN, add its host to `app/src/main/res/xml/red_segura.xml`; everything else must be HTTPS.
 
@@ -110,6 +128,33 @@ Then press Home on the remote and pick **Lyra** if asked. Do not use "Force stop
 - **Branding.** Name in `app/src/main/res/values/strings.xml`, intro video in `app/src/main/res/raw/intro_vigia.mp4`, banner and icon in `app/src/main/res/drawable-*`.
 - **Application id.** To install side by side with someone else's build, change `applicationId` in `app/build.gradle.kts`.
 
+## Themes & colors
+
+Lyra ships six color themes. Pick one with the remote in *Ajustes > Tema de color* (Settings > Color theme): move to a theme and press OK. The change is immediate and is saved on the TV, so it survives restarts and updates.
+
+| Theme | Id | Look |
+| --- | --- | --- |
+| Lyra | `lyra` | Default. Black and white, red focus ring. |
+| Medianoche | `medianoche` | Deep navy with a cyan accent. |
+| OLED negro | `oled` | Pure black surfaces and a white focus ring, for OLED TVs and dark rooms. |
+| Alto contraste | `contraste` | Black, white and a yellow focus ring and buttons. Not customizable, on purpose. |
+| Cálido | `calido` | Warm dark brown with an amber accent. |
+| Papel | `papel` | Light theme: off-white background, dark text, crimson focus ring. Text shadows are turned off. |
+
+![Settings panel with the color theme picker](docs/images/settings-themes.webp)
+
+**Custom colors.** Add any of these to `config.local.properties`, either before building or in the copy you push to `/sdcard/Android/data/co.davidvega.launcher/files/` (then restart Lyra):
+
+```properties
+THEME=medianoche          # default theme when none was picked in Ajustes
+THEME_ACCENT=#4CC9F0      # focus ring and highlights
+THEME_BACKGROUND=#101820  # background; cards and borders are derived from it
+```
+
+A theme picked in *Ajustes* wins over `THEME`. The custom accent and background are applied on top of whichever theme is active, except *Alto contraste*.
+
+**Accessibility rules.** Every built-in theme meets WCAG 2.1 AA: at least 4.5:1 for all text on the background and on cards, and at least 3:1 for the focus ring and the focused card against the background, so the D-pad focus is always visible. Custom colors are checked with the same rules: an accent below 3:1 or a background that would push any text below 4.5:1 is ignored, the reason is logged (`adb logcat -s Launcher`, lines starting with `tema:`) and shown under the theme picker. The rules live in `app/src/main/java/co/davidvega/launcher/data/Temas.kt` and are covered by `TemasTest`.
+
 ## Optional
 
 - **AniList.** Put `ANILIST_TOKEN=...` in a `config.local.properties` and `adb push` it to `/sdcard/Android/data/co.davidvega.launcher/files/`.
@@ -136,6 +181,8 @@ Desde el código:
 2. **Compila:** `.\gradlew.bat assembleDebug` (JDK 17+ y Android SDK).
 3. **Instala:** activa la depuración ADB en el Fire TV y ejecuta `.\instalar.ps1 -Tele <IP-de-tu-tele>`. Pulsa Home y elige «Lyra».
 4. **Desinstala:** `adb uninstall co.davidvega.launcher`; el Fire TV vuelve al inicio de Amazon.
+
+**Temas de color:** seis temas (Lyra, Medianoche, OLED negro, Alto contraste, Cálido y Papel, el claro) en *Ajustes > Tema de color*, más acento y fondo propios con `THEME_ACCENT` y `THEME_BACKGROUND` en `config.local.properties`. Todos cumplen el contraste WCAG AA y los colores propios que no lo cumplan se ignoran. Detalle en [Themes & colors](#themes--colors) y en [INSTALL.es.md](INSTALL.es.md#6-colores-y-temas).
 
 El código y los comentarios están en español. Las contribuciones son bienvenidas en inglés o en español (ver `CONTRIBUTING.md`).
 

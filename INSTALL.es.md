@@ -17,6 +17,8 @@ Lyra es una pantalla de inicio propia para televisores y reproductores. No está
 
 ## 2. Elige cómo instalar
 
+![Tres rutas de instalación: A con la app Downloader, B con adb desde un PC, C compilando el código](docs/images/install-routes-es.png)
+
 ### Ruta A: sin PC, con la app Downloader (la más fácil)
 
 1. En la tele instala **Downloader** (de AFTVnews) desde la tienda de Amazon (Fire TV) o Google Play (Android TV).
@@ -64,6 +66,12 @@ El APK queda en `app/build/outputs/apk/debug/app-debug.apk`. `./gradlew assemble
 
 Abre **Lyra** desde tu lista de apps. Debes ver la intro de Lyra y luego la pantalla de inicio con filas. Muévete con las flechas, OK abre un título y la tecla de menú (las tres rayas) abre el menú del título: tráiler, marcar como visto, no recomendar, Mi lista. Dentro de Lyra, *Ajustes > Estado del sistema* dice qué funciona y cómo arreglar lo que no.
 
+| Primero la intro… | …luego el inicio |
+| --- | --- |
+| ![Intro de Lyra con el logo de puntos](docs/images/intro.webp) | ![Inicio de Lyra con filas de ejemplo](docs/images/home.webp) |
+
+Sin clave de TMDB ves las filas de ejemplo de arriba (tarjetas sin póster y la etiqueta «DATOS DE EJEMPLO» bajo el reloj). Es lo esperado: pon una clave en el paso 5.
+
 ## 4. Ponerla como pantalla de inicio
 
 Depende del aparato y es la parte menos probada.
@@ -100,6 +108,8 @@ Extras opcionales (cada uno necesita adb una vez):
 
 Lyra necesita datos de internet. Todas las claves son **tuyas**; la app no trae ninguna. La plantilla es [`config.example.properties`](config.example.properties), con un comentario en cada línea.
 
+![Dónde va config.local.properties: en la raíz del repo antes de compilar, o en la carpeta de la app en la tele con adb push](docs/images/config-file-es.png)
+
 | Clave | ¿Hace falta? | Cómo conseguirla |
 | --- | --- | --- |
 | `TMDB_API_KEY` o `TMDB_READ_TOKEN` | Recomendada. Sin una solo ves filas de ejemplo. | Cuenta gratuita en <https://www.themoviedb.org>, luego *Configuración > API* y pide una clave de desarrollador. Sirve la «API Key» (v3) o el «Read Access Token» (v4, empieza con `eyJ`). |
@@ -118,12 +128,32 @@ y cópialo a `/sdcard/Android/data/co.davidvega.launcher/files/` en la tele. Con
 
 Tu perfil de gustos (región, idioma, tus apps de streaming, títulos que amas) está en `datos/gustos.json`. El README, sección *Your taste profile*, explica cómo cambiarlo, también sin recompilar.
 
-## 6. Actualizar
+## 6. Colores y temas
+
+Lyra trae seis temas de color: **Lyra** (el de siempre, negro y blanco con foco rojo), **Medianoche** (azul noche y cian), **OLED negro** (negro puro), **Alto contraste** (foco amarillo), **Cálido** (marrón y ámbar) y **Papel** (un tema claro).
+
+Para cambiarlo con el control: abre el mosaico **Ajustes** del inicio, baja hasta **TEMA DE COLOR**, ponte sobre un tema y pulsa OK. La pantalla cambia al momento y la elección queda guardada.
+
+![Panel Ajustes, sección de tema de color, con el tema Medianoche activo](docs/images/settings-themes.webp)
+
+![El inicio en cada uno de los seis temas](docs/images/themes.webp)
+
+Colores propios (opcional): añade líneas como estas al mismo `config.local.properties` del paso 5 y reinicia Lyra.
+
+```
+THEME=oled
+THEME_ACCENT=#4CC9F0
+THEME_BACKGROUND=#101820
+```
+
+`THEME` es solo el tema de partida; manda el que elijas en *Ajustes*. Los colores van como `#RRGGBB`. Para que el texto se lea y el foco se vea desde el sofá, Lyra rechaza los colores que no cumplen el contraste WCAG AA (por ejemplo, un acento oscuro sobre fondo oscuro) y dice por qué bajo la lista de temas. El tema de alto contraste no admite colores propios.
+
+## 7. Actualizar
 
 - **Ruta A:** corre Downloader otra vez con la misma dirección. Instalar encima conserva tus ajustes. Si Android se niega por la firma, desinstala primero.
 - **Ruta B/C:** `adb install -r <nuevo-apk>`. En Fire TV, `adb install -r` apaga el servicio de accesibilidad: actívalo de nuevo (paso 4) o usa `instalar.ps1`.
 
-## 7. Desinstalar y volver al inicio original
+## 8. Desinstalar y volver al inicio original
 
 ```sh
 adb shell settings put secure enabled_accessibility_services ""
@@ -132,7 +162,7 @@ adb uninstall co.davidvega.launcher
 
 La primera línea apaga todos los servicios de accesibilidad (vacía la lista completa, así que vuelve a activar los demás que uses). Sin PC: *Configuración > Aplicaciones > Administrar aplicaciones instaladas > Lyra > Desinstalar*. El inicio de Amazon vuelve al instante; Lyra no cambia nada más en la tele. Si pusiste Lyra como inicio en Android TV, elige otra app de inicio primero, o simplemente desinstálala.
 
-## 8. Problemas frecuentes
+## 9. Problemas frecuentes
 
 - **El foco se pierde o una pantalla no se puede recorrer.** Pulsa Atrás y entra de nuevo. Si sigue pasando, abre un issue con la pantalla y el aparato. Lyra se maneja solo con las flechas.
 - **Pantalla negra o la intro parece trabada.** Espera unos 10 segundos, pulsa Atrás y abre Lyra otra vez. En *Ajustes > Intro* elige «ninguna» para saltar el vídeo. Cuenta el modelo de tu aparato si persiste.

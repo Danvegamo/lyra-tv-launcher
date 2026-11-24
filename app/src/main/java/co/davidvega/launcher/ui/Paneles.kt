@@ -63,9 +63,9 @@ import co.davidvega.launcher.sistema.SaludCalculo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private val FondoPanel = Tema.Fondo // opaco: sin transparencia sobre el inicio
-internal val Pieza = Tema.Superficie2
-private val PiezaFoco = Tema.Texto
+private val FondoPanel get() = Tema.Fondo // opaco: sin transparencia sobre el inicio
+internal val Pieza get() = Tema.Superficie2
+private val PiezaFoco get() = Tema.Foco
 
 /** Ventana modal a pantalla completa: captura el foco del D-pad y se cierra con Atrás. */
 @Composable
@@ -107,6 +107,20 @@ fun PanelAjustes(vm: co.davidvega.launcher.LauncherVM, nombres: Map<String, Stri
                     }
                 }
             }
+            Spacer(Modifier.height(14.dp))
+            BasicText("TEMA DE COLOR", style = txt(12, FontWeight.Bold, Tema.Secundario))
+            val temaActivo = Tema.paleta
+            co.davidvega.launcher.data.Temas.TODOS.chunked(3).forEach { fila ->
+                Row(horizontalArrangement = Arrangement.spacedBy(20.dp), modifier = Modifier.padding(top = 8.dp)) {
+                    fila.forEach { p ->
+                        val elegido = temaActivo.id == p.id
+                        Pieza((if (elegido) "● " else "") + p.nombre, if (elegido) "Tema activo" else "Pulsa OK para usarlo", Modifier, acento = Color(p.acento)) {
+                            Tema.elegir(ctx, p.id)
+                        }
+                    }
+                }
+            }
+            if (Tema.avisos.isNotEmpty()) BasicText(Tema.avisos.joinToString("  ·  "), style = txt(13, color = Tema.Secundario), modifier = Modifier.padding(top = 6.dp))
             Spacer(Modifier.height(14.dp))
             BasicText("RECOMENDACIONES", style = txt(12, FontWeight.Bold, Tema.Secundario))
             Row(horizontalArrangement = Arrangement.spacedBy(20.dp), modifier = Modifier.padding(top = 8.dp)) {
@@ -361,12 +375,12 @@ private fun PanelQuitables(titulo: String, ayuda: String, vacio: String, items: 
                     var foco by remember { mutableStateOf(false) }
                     Row(
                         Modifier.width(760.dp).height(48.dp).let { if (esElPrimero) it.focusRequester(primero) else it }
-                            .clip(RoundedCornerShape(12.dp)).background(if (foco) Tema.Texto else Tema.Superficie2)
+                            .clip(RoundedCornerShape(12.dp)).background(if (foco) Tema.Foco else Tema.Superficie2)
                             .onFocusChanged { foco = it.isFocused }.clickable { quitar(v.clave) }.padding(horizontal = 18.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         BasicText(v.titulo.ifBlank { "(sin título)" }, style = txt(17, FontWeight.SemiBold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null), maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
-                        BasicText(listOf(if (v.medio == "tv") "Serie" else "Película", v.fecha, "Quitar").filter { it.isNotBlank() }.joinToString("  ·  "), style = txt(13, color = if (foco) Tema.Terciario else Tema.Secundario).copy(shadow = null))
+                        BasicText(listOf(if (v.medio == "tv") "Serie" else "Película", v.fecha, "Quitar").filter { it.isNotBlank() }.joinToString("  ·  "), style = txt(13, color = if (foco) Tema.SecundarioSobreFoco else Tema.Secundario).copy(shadow = null))
                     }
                 }
             }
@@ -432,7 +446,7 @@ internal fun Boton(texto: String, modifier: Modifier, ancho: Dp = 200.dp, alPuls
     val escala by animateFloatAsState(if (foco) 1.08f else 1f, tween(140), label = "b")
     Box(
         modifier.size(ancho, 56.dp).graphicsLayer { scaleX = escala; scaleY = escala }
-            .clip(RoundedCornerShape(14.dp)).background(if (foco) Tema.Texto else Tema.Superficie2)
+            .clip(RoundedCornerShape(14.dp)).background(if (foco) Tema.Foco else Tema.Superficie2)
             .onFocusChanged { foco = it.isFocused }.clickable(onClick = alPulsar),
         contentAlignment = Alignment.Center,
     ) { BasicText(texto, style = txt(18, FontWeight.SemiBold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null)) }
@@ -452,7 +466,7 @@ private fun Pieza(titulo: String, detalle: String, modifier: Modifier, acento: C
         Column(Modifier.align(Alignment.CenterStart).padding(start = 22.dp, end = 12.dp)) {
             BasicText(titulo, style = txt(19, FontWeight.Bold, if (foco) Tema.TextoSobreBlanco else Tema.Texto).copy(shadow = null), maxLines = 1, overflow = TextOverflow.Ellipsis)
             Spacer(Modifier.height(3.dp))
-            BasicText(detalle, style = txt(12, color = if (foco) Tema.Terciario else Tema.Secundario).copy(shadow = null), maxLines = 2, overflow = TextOverflow.Ellipsis)
+            BasicText(detalle, style = txt(12, color = if (foco) Tema.SecundarioSobreFoco else Tema.Secundario).copy(shadow = null), maxLines = 2, overflow = TextOverflow.Ellipsis)
         }
     }
 }

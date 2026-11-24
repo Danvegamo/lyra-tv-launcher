@@ -97,12 +97,12 @@ import java.util.Locale
 private val MargenX = 48.dp
 private val MargenY = 27.dp
 
-private val Degradados = Tema.Placeholders
+private val Degradados get() = Tema.Placeholders
 
 private val NombreServicio = mapOf("netflix" to "Netflix", "prime" to "Prime Video", "hbomax" to "HBO Max", "crunchyroll" to "Crunchyroll")
 
 // Jerarquía tipográfica: título 32 / etiqueta de fila 18 / cuerpo 15 / meta 14 / pie de tarjeta 12. Sombra suave sobre imágenes.
-private val Sombra = Shadow(Color.Black.copy(alpha = 0.65f), Offset(0f, 2f), 8f)
+private val Sombra get() = Shadow(Tema.SombraTexto, Offset(0f, 2f), 8f)
 internal fun txt(size: Int, peso: FontWeight = FontWeight.Normal, color: Color = Tema.Texto) =
     TextStyle(fontSize = size.sp, fontWeight = peso, color = color, shadow = Sombra)
 
@@ -408,7 +408,7 @@ fun Pantalla(vm: LauncherVM) {
         Reloj(Modifier.align(Alignment.TopEnd).padding(top = MargenY, end = MargenX))
         val aviso = estado.aviso ?: if (estado.modo == Modo.MUESTRA && !estado.cargando) "DATOS DE EJEMPLO" else null
         if (aviso != null) {
-            Box(Modifier.align(Alignment.TopEnd).padding(top = 72.dp, end = MargenX).clip(RoundedCornerShape(8.dp)).background(Tema.VeloAviso).padding(horizontal = 10.dp, vertical = 4.dp)) {
+            Box(Modifier.align(Alignment.TopEnd).padding(top = 126.dp, end = MargenX).clip(RoundedCornerShape(8.dp)).background(Tema.VeloAviso).padding(horizontal = 10.dp, vertical = 4.dp)) {
                 BasicText(aviso, style = txt(12, FontWeight.Bold))
             }
         }
@@ -416,7 +416,7 @@ fun Pantalla(vm: LauncherVM) {
         var accApagada by remember { mutableStateOf(!co.davidvega.launcher.sistema.HomeAccessibilityService.activo) }
         LaunchedEffect(delante) { if (delante) while (true) { accApagada = !co.davidvega.launcher.sistema.HomeAccessibilityService.activo; delay(5000) } }
         if (accApagada) {
-            BasicText("Búsqueda guiada y botón Home apagados — Ajustes > Estado del sistema", style = txt(12, color = Tema.Secundario), modifier = Modifier.align(Alignment.TopEnd).padding(top = if (aviso != null) 104.dp else 72.dp, end = MargenX))
+            BasicText("Búsqueda guiada y botón Home apagados — Ajustes > Estado del sistema", style = txt(12, color = Tema.Secundario), modifier = Modifier.align(Alignment.TopEnd).padding(top = if (aviso != null) 158.dp else 126.dp, end = MargenX)) // debajo del reloj: a 72 dp tapaba la fecha
         }
 
         when (panel) {
@@ -455,7 +455,7 @@ private fun Reloj(modifier: Modifier) {
     val ahora by produceState(Date(), delante) { value = Date(); if (delante) while (true) { delay(15_000); value = Date() } }
     Column(modifier, horizontalAlignment = Alignment.End) {
         BasicText(SimpleDateFormat("h:mm", Locale("es", "CO")).format(ahora), style = txtPuntos(52))
-        BasicText(SimpleDateFormat("EEE d MMM · a", Locale("es", "CO")).format(ahora).uppercase().replace(".", ""), style = txtMono(23, Color.White).copy(shadow = androidx.compose.ui.graphics.Shadow(Color.Black, androidx.compose.ui.geometry.Offset(0f, 2f), 8f)))
+        BasicText(SimpleDateFormat("EEE d MMM · a", Locale("es", "CO")).format(ahora).uppercase().replace(".", ""), style = txtMono(23, Tema.Texto).copy(shadow = androidx.compose.ui.graphics.Shadow(Tema.SombraTexto, androidx.compose.ui.geometry.Offset(0f, 2f), 8f)))
     }
 }
 
@@ -465,9 +465,9 @@ private fun Esqueleto() {
     val pulso by rememberInfiniteTransition(label = "esq").animateFloat(0.35f, 0.7f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "p")
     Column(Modifier.padding(top = 6.dp)) {
         repeat(2) {
-            Box(Modifier.padding(start = MargenX, top = 6.dp, bottom = 8.dp).size(220.dp, 18.dp).clip(RoundedCornerShape(6.dp)).background(Color.White.copy(alpha = pulso * 0.35f)))
+            Box(Modifier.padding(start = MargenX, top = 6.dp, bottom = 8.dp).size(220.dp, 18.dp).clip(RoundedCornerShape(6.dp)).background(Tema.Texto.copy(alpha = pulso * 0.35f)))
             Row(Modifier.padding(horizontal = MargenX, vertical = 14.dp), horizontalArrangement = Arrangement.spacedBy(18.dp)) {
-                repeat(4) { Box(Modifier.size(224.dp, 126.dp).clip(RoundedCornerShape(14.dp)).background(Color.White.copy(alpha = pulso * 0.25f))) }
+                repeat(4) { Box(Modifier.size(224.dp, 126.dp).clip(RoundedCornerShape(14.dp)).background(Tema.Texto.copy(alpha = pulso * 0.25f))) }
             }
         }
     }

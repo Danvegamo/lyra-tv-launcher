@@ -107,7 +107,7 @@ private fun ChipPlataforma(texto: String, color: Color, icono: androidx.compose.
         modifier.graphicsLayer { scaleX = escala; scaleY = escala }
             .shadow((22 * brillo).dp, forma, clip = false, ambientColor = Color.White, spotColor = Color.White)
             .clip(forma).background(color.copy(alpha = if (activo) 1f else 0.35f))
-            .border(if (foco) 3.dp else 1.dp, if (foco) Color.White else Color.White.copy(alpha = 0.18f), forma)
+            .border(if (foco) 3.dp else 1.dp, if (foco) Tema.Foco else Color.White.copy(alpha = 0.18f), forma)
             .onFocusChanged { foco = it.isFocused }.clickable(onClick = alPulsar)
             .height(40.dp).padding(horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,

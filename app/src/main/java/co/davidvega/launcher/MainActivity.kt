@@ -231,6 +231,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        co.davidvega.launcher.ui.Tema.cargar(this) // tema de color: el elegido en Ajustes o el de config.local.properties
         setContent {
             val vm: LauncherVM = viewModel()
             BackHandler { /* Es el inicio: Atrás no hace nada. */ }

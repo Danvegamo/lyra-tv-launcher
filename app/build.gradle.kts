@@ -28,13 +28,17 @@ android {
         applicationId = "co.davidvega.launcher"
         minSdk = 28
         targetSdk = 28
-        versionCode = 27
-        versionName = "0.15.0"
+        versionCode = 28
+        versionName = "0.16.0"
         buildConfigField("String", "TMDB_API_KEY", "\"${cfg("TMDB_API_KEY")}\"")
         buildConfigField("String", "TMDB_READ_TOKEN", "\"${cfg("TMDB_READ_TOKEN")}\"")
         buildConfigField("String", "EVENTOS_URL", "\"${cfg("EVENTOS_URL")}\"")
         buildConfigField("String", "EVENTOS_TOKEN", "\"${cfg("EVENTOS_TOKEN")}\"")
         buildConfigField("String", "EVENTOS_DISPOSITIVO", "\"${cfg("EVENTOS_DISPOSITIVO").ifBlank { "firetv" }}\"")
+        // Tema de color por defecto y colores personalizados (opcionales; ver config.example.properties).
+        buildConfigField("String", "THEME", "\"${cfg("THEME")}\"")
+        buildConfigField("String", "THEME_ACCENT", "\"${cfg("THEME_ACCENT")}\"")
+        buildConfigField("String", "THEME_BACKGROUND", "\"${cfg("THEME_BACKGROUND")}\"")
     }
 
     buildFeatures {
